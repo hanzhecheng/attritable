@@ -42,6 +42,7 @@ export default {
   },
   methods: {
     dealTableData(arr) {
+      //处理表格数据，如果规格相同的，将新的表格数据，从历史数据里取出
       this.tableData = arr;
       this.tableData = this.tableData.map((item, index) => {
         let inx = this.originData.findIndex(
@@ -54,6 +55,8 @@ export default {
       });
     },
     setOriginData(val) {
+      //设置历史数据，历史数据为空的时候，历史数据=val，历史数据不为空的时候，判断val的specs是否存在在历史数据中
+      //不存在就push到历史数据中，存在就更新历史数据
       val = JSON.parse(JSON.stringify(val));
       if (this.originData.length == 0) {
         this.originData = val;
@@ -71,6 +74,7 @@ export default {
       }
     },
     bothAttr() {
+      //勾选了两种属性，生成checkListOne*checkListTwo个数据
       let arr = [];
       let tbleIndex = 0;
       this.checkListOne.forEach(oneitem => {
@@ -93,6 +97,7 @@ export default {
       return arr;
     },
     oneAttr() {
+      //只勾选了第一种属性，生成checkListOne个数据
       let arr = [];
       this.checkListOne.forEach((oneitem, index) => {
         arr.push({
@@ -111,6 +116,7 @@ export default {
       return arr;
     },
     twoArrt() {
+      //只勾选了第二种属性，生成checkListTwo个数据
       let arr = [];
       this.checkListTwo.forEach((twoitem, index) => {
         arr.push({
@@ -131,6 +137,7 @@ export default {
   },
   computed: {
     specs() {
+      //勾选属性变化时候，根据勾选的属性生成table数据，specs本身并没有用
       let returnArr = [];
       if (this.checkListOne.length > 0 && this.checkListTwo.length > 0) {
         returnArr = this.bothAttr();
