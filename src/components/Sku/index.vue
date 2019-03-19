@@ -5,17 +5,17 @@
       <el-checkbox-group v-model='checkListOne'>
         <el-checkbox label='红色'></el-checkbox>
         <el-checkbox label='蓝色'></el-checkbox>
-        <el-checkbox label='金色'></el-checkbox>
+        <el-checkbox label='红蓝花色'></el-checkbox>
+        <el-checkbox label='红黄花色'></el-checkbox>
         <el-checkbox label='银色'></el-checkbox>
-        <el-checkbox label='粉色'></el-checkbox>
       </el-checkbox-group>
     </div>
 
     <div class='sku__attri'>
       <label class='sku__attri__name'>尺寸:</label>
       <el-checkbox-group v-model='checkListTwo'>
-        <el-checkbox label='20寸'></el-checkbox>
-        <el-checkbox label='25寸'></el-checkbox>
+        <el-checkbox label='20英寸'></el-checkbox>
+        <el-checkbox label='6-12'></el-checkbox>
         <el-checkbox label='30寸'></el-checkbox>
         <el-checkbox label='35寸'></el-checkbox>
         <el-checkbox label='40寸'></el-checkbox>
@@ -33,12 +33,157 @@ export default {
     return {
       checkListOne: [],
       checkListTwo: [],
+      tableDatatemp: [
+        {
+          barCode: null,
+          createId: 31,
+          createTime: "2019-03-16 10:48:51",
+          goodsId: 967,
+          id: 1665,
+          isDefault: 1,
+          isDel: 0,
+          price: 1000,
+          sku360Params: null,
+          skuImg:
+            "https://img-test.hbunion.com/upload/image/201903/1552546169532.png",
+          skuImgs: `["https://img-test.hbunion.com/upload/image/201903/1552546169532.png"]`,
+          skuName: "asdasdf",
+          skuNameLetter: "ASDASDF",
+          specs: `[{"specId":32,"specName":"颜色","specValue":"红蓝花色","specValueId":168,"type":"0"},{"specId":53,"specName":"箱包尺寸","specValue":"20英寸","specValueId":196,"type":"1"}]`,
+          stock: 1,
+          stockLock: 0,
+          updateId: null,
+          updateTime: null
+        },
+        {
+          barCode: null,
+          createId: 31,
+          createTime: "2019-03-16 10:48:51",
+          goodsId: 967,
+          id: 1666,
+          isDefault: 0,
+          isDel: 0,
+          price: 1000,
+          sku360Params: null,
+          skuImg:
+            "https://img-test.hbunion.com/upload/image/201903/1552546169532.png",
+          skuImgs: `["https://img-test.hbunion.com/upload/image/201903/1552546169532.png"]`,
+          skuName: "asdasdf",
+          skuNameLetter: "ASDASDF",
+          specs: `[{"specId":32,"specName":"颜色","specValue":"红蓝花色","specValueId":168,"type":"0"},{"specId":53,"specName":"箱包尺寸","specValue":"6-12","specValueId":212,"type":"1"}]`,
+          stock: 1,
+          stockLock: 0,
+          updateId: null,
+          updateTime: null
+        },
+        {
+          barCode: null,
+          createId: 31,
+          createTime: "2019-03-16 10:48:51",
+          goodsId: 967,
+          id: 1667,
+          isDefault: 0,
+          isDel: 0,
+          price: 1000,
+          sku360Params: null,
+          skuImg:
+            "https://img-test.hbunion.com/upload/image/201903/1552704523951.jpg",
+          skuImgs: `["https://img-test.hbunion.com/upload/image/201903/1552704523951.jpg"]`,
+          skuName: "asdasdf",
+          skuNameLetter: "ASDASDF",
+          specs: `[{"specId":32,"specName":"颜色","specValue":"红黄花色","specValueId":169,"type":"0"},{"specId":53,"specName":"箱包尺寸","specValue":"20英寸","specValueId":196,"type":"1"}]`,
+          stock: 1,
+          stockLock: 0,
+          updateId: null,
+          updateTime: null
+        },
+        {
+          barCode: null,
+          createId: 31,
+          createTime: "2019-03-16 10:48:51",
+          goodsId: 967,
+          id: 1668,
+          isDefault: 0,
+          isDel: 0,
+          price: 1000,
+          sku360Params: null,
+          skuImg:
+            "https://img-test.hbunion.com/upload/image/201903/1552704523951.jpg",
+          skuImgs: `["https://img-test.hbunion.com/upload/image/201903/1552704523951.jpg"]`,
+          skuName: "asdasdf",
+          skuNameLetter: "ASDASDF",
+          specs: `[{"specId":32,"specName":"颜色","specValue":"红黄花色","specValueId":169,"type":"0"},{"specId":53,"specName":"箱包尺寸","specValue":"6-12","specValueId":212,"type":"1"}]`,
+          stock: 1,
+          stockLock: 0,
+          updateId: null,
+          updateTime: null
+        },
+        {
+          barCode: null,
+          createId: 31,
+          createTime: "2019-03-16 10:48:51",
+          goodsId: 967,
+          id: 1669,
+          isDefault: 0,
+          isDel: 0,
+          price: 1000,
+          sku360Params: null,
+          skuImg:
+            "https://img-test.hbunion.com/upload/image/201903/1552704526796.jpg",
+          skuImgs: `["https://img-test.hbunion.com/upload/image/201903/1552704526796.jpg"]`,
+          skuName: "asdasdf",
+          skuNameLetter: "ASDASDF",
+          specs: `[{"specId":32,"specName":"颜色","specValue":"银色","specValueId":172,"type":"0"},{"specId":53,"specName":"箱包尺寸","specValue":"20英寸","specValueId":196,"type":"1"}]`,
+          stock: 1,
+          stockLock: 0,
+          updateId: null,
+          updateTime: null
+        },
+        {
+          barCode: null,
+          createId: 31,
+          createTime: "2019-03-16 10:48:51",
+          goodsId: 967,
+          id: 1670,
+          isDefault: 0,
+          isDel: 0,
+          price: 1000,
+          sku360Params: null,
+          skuImg:
+            "https://img-test.hbunion.com/upload/image/201903/1552704526796.jpg",
+          skuImgs: `["https://img-test.hbunion.com/upload/image/201903/1552704526796.jpg"]`,
+          skuName: "asdasdf",
+          skuNameLetter: "ASDASDF",
+          specs: `[{"specId":32,"specName":"颜色","specValue":"银色","specValueId":172,"type":"0"},{"specId":53,"specName":"箱包尺寸","specValue":"6-12","specValueId":212,"type":"1"}]`,
+          stock: 1,
+          stockLock: 0,
+          updateId: null,
+          updateTime: null
+        }
+      ],
       tableData: [], //表格数据
       originData: [] //表格动态数据，tableData删除的数据也会保留
     };
   },
   components: {
     SkuTable
+  },
+  mounted() {
+    if (this.tableDatatemp.length > 0) {
+      let arr = this.tableDatatemp.map(item => {
+        return JSON.parse(item.specs);
+      });
+     
+      let colorSet = new Set(),
+        sizeSet = new Set();
+      arr.forEach(item => {
+        colorSet.add(item[0].specValue);
+        sizeSet.add(item[1].specValue);
+      });
+      this.checkListOne=[...colorSet]
+      this.checkListTwo=[...sizeSet]
+      this.originData=this.tableDatatemp
+    }
   },
   methods: {
     dealTableData(arr) {

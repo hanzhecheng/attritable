@@ -7,13 +7,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for='(item,index) in tableData'>
-        <!-- <td
-          v-for='(subitem,inx) in item.specs'
-          v-if='(index%item.specs.length)==0&&inx==0||subitem.type==1'
-          :rowspan='subitem.type==0?item.specs.length:1'
-        >{{subitem.specValue}}</td> -->
-        <td  v-for='(subitem,inx) in item.specs'>{{subitem.specValue}}</td>
+      <tr v-for='(item,index) in tbldata'>
+        <td v-for='(subitem,inx) in item.specs'>{{subitem.specValue}}</td>
         <td v-for='subitem in basicBody'>
           <input type='text' v-model='item[subitem]' @input='updateTableData'>
         </td>
@@ -47,8 +42,26 @@ export default {
   computed: {
     attrhead() {
       if (this.tableData.length > 0) {
-        return this.tableData[0].specs.map(item => item.specName);
+        let arr = [];
+        if (typeof this.tableData[0].specs == "string") {
+          arr = JSON.parse(this.tableData[0].specs);
+        } else {
+          arr = this.tableData[0].specs;
+        }
+        return arr.map(item => item.specName);
       }
+    },
+    tbldata() {
+      let arr = [];
+      this.tableData.forEach(item => {
+        if (typeof item.specs == "string") {
+          item.specs = JSON.parse(item.specs);
+          arr.push(item)
+        }else{
+          arr.push(item)
+        }
+      });
+      return arr
     }
   }
 };
