@@ -173,16 +173,16 @@ export default {
       let arr = this.tableDatatemp.map(item => {
         return JSON.parse(item.specs);
       });
-     
+
       let colorSet = new Set(),
         sizeSet = new Set();
       arr.forEach(item => {
         colorSet.add(item[0].specValue);
         sizeSet.add(item[1].specValue);
       });
-      this.checkListOne=[...colorSet]
-      this.checkListTwo=[...sizeSet]
-      this.originData=this.tableDatatemp
+      this.checkListOne = [...colorSet];
+      this.checkListTwo = [...sizeSet];
+      this.originData = this.tableDatatemp;
     }
   },
   methods: {
@@ -190,9 +190,18 @@ export default {
       //处理表格数据，如果规格相同的，将新的表格数据，从历史数据里取出
       this.tableData = arr;
       this.tableData = this.tableData.map((item, index) => {
-        let inx = this.originData.findIndex(
-          it => JSON.stringify(it.specs) == JSON.stringify(item.specs)
-        );
+        //判断原始数据中是否存在，specs中属性值很多，只依据为specs的数组specValue是否相同
+        let inx = this.originData.findIndex(it => {
+          let originArr = "";
+          if (typeof it.specs == "string") {
+            originArr = JSON.parse(it.specs);
+          } else {
+            originArr = it.specs;
+          }
+          let itArr = originArr.map(items => items.specValue),
+            itemArr = item.specs.map(items => items.specValue);
+          return JSON.stringify(itArr) == JSON.stringify(itemArr);
+        });
         if (inx !== -1) {
           item = this.originData[inx];
         }
@@ -207,9 +216,12 @@ export default {
         this.originData = val;
       } else {
         val.forEach(item => {
-          let inx = this.originData.findIndex(
-            it => JSON.stringify(it.specs) == JSON.stringify(item.specs)
-          );
+          //判断原始数据中是否存在，specs中属性值很多，只依据为specs的数组specValue是否相同
+          let inx = this.originData.findIndex(it => {
+            let itArr = it.specs.map(items => items.specValue),
+              itemArr = item.specs.map(items => items.specValue);
+            return JSON.stringify(itArr) == JSON.stringify(itemArr);
+          });
           if (inx == -1) {
             this.originData.push(item);
           } else {
