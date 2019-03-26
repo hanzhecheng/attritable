@@ -326,7 +326,7 @@ export default {
 <style scoped>
 .sku__attri {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 .sku__attri__name {
