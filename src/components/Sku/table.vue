@@ -10,7 +10,8 @@
       <tr v-for='(item,index) in tbldata'>
         <td v-for='(subitem,inx) in item.specs'>{{subitem.specValue}}</td>
         <td v-for='subitem in basicBody'>
-          <input type='text' v-model='item[subitem]' @input='updateTableData'>
+          <input v-if="subitem!='isDefault'" type='text' v-model='item[subitem]' @input='updateTableData'>
+          <input v-else type="radio" value="1" v-model='item[subitem]' @change="setDefault(index)">
         </td>
       </tr>
     </tbody>
@@ -23,7 +24,7 @@ export default {
   data() {
     return {
       basicHead: ["价钱", "库存", "条形码", "选择默认商品"],
-      basicBody: ["price", "stock", "barcode", "default"]
+      basicBody: ["price", "stock", "barcode", "isDefault"]
     };
   },
   props: {
@@ -37,6 +38,9 @@ export default {
   methods: {
     updateTableData() {
       this.$emit("setOriginData", this.tableData);
+    },
+    setDefault(index){
+      this.$emit("setDefault",index)
     }
   },
   computed: {

@@ -21,7 +21,12 @@
         <el-checkbox label='40寸'></el-checkbox>
       </el-checkbox-group>
     </div>
-    <SkuTable :spec='specs' :table-data='tableData' @setOriginData='setOriginData'></SkuTable>
+    <SkuTable
+      :spec='specs'
+      :table-data='tableData'
+      @setOriginData='setOriginData'
+      @setDefault='setDefault'
+    ></SkuTable>
   </div>
 </template>
 
@@ -174,8 +179,7 @@ export default {
         return JSON.parse(item.specs);
       });
 
-      let colorSet = new Set(),
-        sizeSet = new Set();
+      let colorSet = new Set(),sizeSet = new Set();
       arr.forEach(item => {
         colorSet.add(item[0].specValue);
         sizeSet.add(item[1].specValue);
@@ -191,23 +195,14 @@ export default {
       this.tableData = arr;
       this.tableData = this.tableData.map((item, index) => {
         //判断原始数据中是否存在，specs中属性值很多，只依据为specs的数组specValue是否相同
-        let inx = this.originData.findIndex(it => {
-          let originArr = "";
-          if (typeof it.specs == "string") {
-            originArr = JSON.parse(it.specs);
-          } else {
-            originArr = it.specs;
-          }
-          let itArr = originArr.map(items => items.specValue),
-            itemArr = item.specs.map(items => items.specValue);
-          return JSON.stringify(itArr) == JSON.stringify(itemArr);
-        });
+        let inx = this.getOriginIndex(item);
         if (inx !== -1) {
           item = this.originData[inx];
         }
         return item;
       });
     },
+
     setOriginData(val) {
       //设置历史数据，历史数据为空的时候，历史数据=val，历史数据不为空的时候，判断val的specs是否存在在历史数据中
       //不存在就push到历史数据中，存在就更新历史数据
@@ -217,11 +212,7 @@ export default {
       } else {
         val.forEach(item => {
           //判断原始数据中是否存在，specs中属性值很多，只依据为specs的数组specValue是否相同
-          let inx = this.originData.findIndex(it => {
-            let itArr = it.specs.map(items => items.specValue),
-              itemArr = item.specs.map(items => items.specValue);
-            return JSON.stringify(itArr) == JSON.stringify(itemArr);
-          });
+          let inx = this.getOriginIndex(item);
           if (inx == -1) {
             this.originData.push(item);
           } else {
@@ -229,6 +220,20 @@ export default {
           }
         });
       }
+    },
+    getOriginIndex(item) {
+      //查看数据是否存在在原始数据中，根据属性名称判断
+      let index = this.originData.findIndex(it => {
+        let originArr = "";
+        if (typeof it.specs == "string") {
+          originArr = JSON.parse(it.specs);
+        } else {
+          originArr = it.specs;
+        }
+        let itArr = originArr.map(items => items.specValue),itemArr = item.specs.map(items => items.specValue);
+        return JSON.stringify(itArr) == JSON.stringify(itemArr);
+      });
+      return index;
     },
     bothAttr() {
       //勾选了两种属性，生成checkListOne*checkListTwo个数据
@@ -290,6 +295,14 @@ export default {
         });
       });
       return arr;
+    },
+    setDefault(index) {
+      //设置是否默认商品
+      this.tableData.forEach(item => {
+        this.$set(item, "isDefault", 0);
+      });
+      this.$set(this.tableData[index], "isDefault", 1);
+      this.setOriginData(this.tableData);
     }
   },
   computed: {
